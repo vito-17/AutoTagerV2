@@ -1,6 +1,8 @@
 class HomeController < ShopifyApp::AuthenticatedController
+  include HomeHelper
+
   def index
-    @products = ShopifyAPI::Product.find(:all, params: { limit: 10 })
-    @webhooks = ShopifyAPI::Webhook.find(:all)
+    @shop = Shop.find_by(shopify_domain: shop_session.url)
+    @customers = @shop.customers
   end
 end

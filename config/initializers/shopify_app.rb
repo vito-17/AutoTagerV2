@@ -7,9 +7,10 @@ ShopifyApp.configure do |config|
   config.after_authenticate_job = false
   config.session_repository = Shop
   config.webhooks = [
-    { topic: 'orders/create', address: 'https://3cd30634.ngrok.io/webhooks/orders_create' },
-    { topic: 'orders/update', address: 'https://3cd30634.ngrok.io/webhooks/orders_update' },
-    { topic: 'customers/create', address: 'https://3cd30634.ngrok.io/webhooks/customers_create' },
-    { topic: 'customers/update', address: 'https://3cd30634.ngrok.io/webhooks/customers_update' }
+    { topic: 'orders/create', address: 'https://564e84b5.ngrok.io/webhooks/orders_create', format: 'json' },
+    { topic: 'orders/update', address: 'https://564e84b5.ngrok.io/webhooks/orders_update', format: 'json' },
+    { topic: 'customers/create', address: 'https://564e84b5.ngrok.io/webhooks/customers_create', format: 'json' },
+    { topic: 'customers/update', address: 'https://564e84b5.ngrok.io/webhooks/customers_update', format: 'json' }
   ]
+  config.after_authenticate_job = { job: SetupCustomersJob, inline: true }
 end
